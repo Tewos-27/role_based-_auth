@@ -40,3 +40,4 @@ Thumbs.db
 # Build artifacts (if you had any, though less common for pure backend)
 dist/
 build/
+# Coverage directory used by tools like istanbul
