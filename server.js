@@ -18,12 +18,8 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('API is running...');
 });
-
-// Use authentication routes
 // This is the line causing the error if authRoutes is not a function
 app.use('/api/auth', authRoutes);
-
-// Error handling middleware (optional, but good practice)
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
