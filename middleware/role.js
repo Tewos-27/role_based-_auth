@@ -3,7 +3,6 @@ const authorize = (roles = []) => {
     if (typeof roles === 'string') {
         roles = [roles];
     }
-
     return (req, res, next) => {
         if (!req.user) {
             return res.status(401).json({ message: 'Not authorized, user not found in request' });
@@ -13,7 +12,6 @@ const authorize = (roles = []) => {
             // user's role is not authorized
             return res.status(403).json({ message: `Forbidden: User role '${req.user.role}' is not authorized to access this route.` });
         }
-
         // authentication and authorization successful
         next();
     };
