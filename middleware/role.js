@@ -7,7 +7,6 @@ const authorize = (roles = []) => {
         if (!req.user) {
             return res.status(401).json({ message: 'Not authorized, user not found in request' });
         }
-
         if (roles.length && !roles.includes(req.user.role)) {
             // user's role is not authorized
             return res.status(403).json({ message: `Forbidden: User role '${req.user.role}' is not authorized to access this route.` });
@@ -16,5 +15,4 @@ const authorize = (roles = []) => {
         next();
     };
 };
-
 module.exports = { authorize };
