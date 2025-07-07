@@ -14,4 +14,4 @@ router.get('/profile', protect, getProfile);
 
 // Admin-only route
 router.get('/users', protect, authorize(['admin']), getAllUsers);
-module.exports = router; // This exports the router instance directly
+module.exports = router; 
