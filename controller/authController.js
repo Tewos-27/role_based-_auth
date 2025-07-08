@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const TokenBlacklist = require('../models/TokenBlacklist'); // Import the new model
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 // Helper function to generate JWT token
 const generateToken = (id) => {
@@ -131,10 +132,83 @@ const getAllUsers = async (req, res) => {
     }
 };
 
+const updateUser = async (req, res) => {
+    const { id } = req.params; // User ID from URL parameter
+    const { username, email, password, role } = req.body; // Fields to update
+
+    try {
+        let user = await User.findById(id);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        if (req.user.role !== 'admin' && req.user._id.toString() !== id) {
+            return res.status(403).json({ message: 'Not authorized to update this user' });
+        }
+
+        if (role && req.user.role !== 'admin') {
+            return res.status(403).json({ message: 'Not authorized to change user roles' });
+        }
+
+        if (username) user.username = username;
+        if (email) user.email = email;
+        if (role) user.role = role; // Only if authorized
+
+        if (password) {
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(password, salt);
+        }
+
+        const updatedUser = await user.save(); // Save the updated user
+
+        res.json({
+            _id: updatedUser._id,
+            username: updatedUser.username,
+            email: updatedUser.email,
+            role: updatedUser.role,
+            message: 'User updated successfully'
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error during user update' });
+    }
+};
+const deleteUser = async (req, res) => {
+    const { id } = req.params; // User ID from URL parameter
+
+    try {
+        const user = await User.findById(id);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        if (req.user.role !== 'admin') {
+            return res.status(403).json({ message: 'Not authorized to delete users' });
+        }
+
+        if (req.user._id.toString() === id) {
+            return res.status(400).json({ message: 'Cannot delete your own admin account via this endpoint' });
+        }
+
+        await user.deleteOne(); // Use deleteOne() for Mongoose 5.x/6.x, or remove() for older versions
+
+        res.status(200).json({ message: 'User deleted successfully' });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error during user deletion' });
+    }
+};
+
 module.exports = {
     registerUser,
     loginUser,
-    logoutUser, // Export the new logout function
+    logoutUser, 
     getProfile,
     getAllUsers,
+    updateUser,
+    deleteUser,
 };
