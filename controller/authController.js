@@ -49,6 +49,8 @@ const registerUser = async (req, res) => {
     }
 };
 
+// @desc    Authenticate user & get token
+// @route   POST /api/auth/login
 // @access  Public
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
@@ -100,6 +102,8 @@ const logoutUser = async (req, res) => {
     }
 };
 
+// @desc    Get user profile
+// @route   GET /api/auth/profile
 // @access  Private
 const getProfile = async (req, res) => {
     // req.user is set by the protect middleware
