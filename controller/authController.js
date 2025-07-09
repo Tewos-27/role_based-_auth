@@ -9,7 +9,6 @@ const generateToken = (id) => {
         expiresIn: '1h', // Token expires in 1 hour
     });
 };
-
 // @desc    Register a new user
 // @route   POST /api/auth/register
 // @access  Public
@@ -101,7 +100,6 @@ const logoutUser = async (req, res) => {
         res.status(500).json({ message: 'Server error during logout' });
     }
 };
-
 // @desc    Get user profile
 // @route   GET /api/auth/profile
 // @access  Private
