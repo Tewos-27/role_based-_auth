@@ -5,8 +5,8 @@ const {
     logoutUser,
     getProfile,
     getAllUsers,
-    updateUser, // Added
-    deleteUser  // Added
+    updateUser, 
+    deleteUser  
 } = require('../controller/authController');
 const { protect } = require('../middleware/auth');
 const { authorize } = require('../middleware/role');
