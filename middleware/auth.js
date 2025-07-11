@@ -4,7 +4,7 @@ const TokenBlacklist = require('../models/TokenBlacklist'); // Import the new mo
 
 const protect = async (req, res, next) => {
     let token;
-
+    // Check if token is provided in the Authorization header
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         try {
             // Get token from header
