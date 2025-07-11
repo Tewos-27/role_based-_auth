@@ -12,6 +12,7 @@ const generateToken = (id) => {
 // @desc    Register a new user
 // @route   POST /api/auth/register
 // @access  Public
+// Note: This function is similar to the one in post_auth/controllers/authControllers.js
 const registerUser = async (req, res) => {
     const { username, email, password, role } = req.body;
 
