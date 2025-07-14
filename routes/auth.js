@@ -21,8 +21,8 @@ router.post('/logout', protect, logoutUser); // New logout route
 // Protected routes
 router.get('/profile', protect, getProfile);
 router.put('/users/:id', protect, updateUser); // No direct authorize middleware here, logic is in controller
-
 router.delete('/users/:id', protect, authorize(['admin']), deleteUser); 
 // Admin-only route
+
 router.get('/users', protect, authorize(['admin']), getAllUsers);
 module.exports = router; 
