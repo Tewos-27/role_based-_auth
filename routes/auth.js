@@ -14,6 +14,7 @@ const { authorize } = require('../middleware/role');
 const router = express.Router(); // This initializes the router
 
 // Public routes
+// No authentication required for these routes
 router.post('/register', registerUser);
 router.post('/login', loginUser);
 router.post('/logout', protect, logoutUser); // New logout route
