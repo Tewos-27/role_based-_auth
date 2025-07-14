@@ -4,6 +4,8 @@ const authorize = (roles = []) => {
         roles = [roles];
     }
     return (req, res, next) => {
+        // Check if user is attached to the request object
+        // If not, it means the user is not authenticated
         if (!req.user) {
             return res.status(401).json({ message: 'Not authorized, user not found in request' });
         }
