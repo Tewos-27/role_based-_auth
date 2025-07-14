@@ -174,6 +174,9 @@ const updateUser = async (req, res) => {
         res.status(500).json({ message: 'Server error during user update' });
     }
 };
+// @desc    Delete a user (Admin only)
+// @route   DELETE /api/auth/users/:id 
+// @access  Private/Admin
 const deleteUser = async (req, res) => {
     const { id } = req.params; // User ID from URL parameter
 
