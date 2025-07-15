@@ -11,8 +11,8 @@ const {
 const { protect } = require('../middleware/auth');
 const { authorize } = require('../middleware/role');
 
-const router = express.Router(); // This initializes the router
-
+const router = express.Router(); 
+// This initializes the router
 // Public routes
 // No authentication required for these routes
 router.post('/register', registerUser);
