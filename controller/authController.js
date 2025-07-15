@@ -204,7 +204,7 @@ const deleteUser = async (req, res) => {
         res.status(500).json({ message: 'Server error during user deletion' });
     }
 };
-
+// Export the functions for use in routes
 module.exports = {
     registerUser,
     loginUser,
