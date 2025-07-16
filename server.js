@@ -5,12 +5,10 @@ const authRoutes = require('./routes/auth'); // Ensure this path is correct
 
 // Load environment variables from .env file
 dotenv.config();
-
 // Connect to MongoDB
 connectDB();
 
 const app = express();
-
 // Middleware to parse JSON bodies
 app.use(express.json());
 
