@@ -9,7 +9,7 @@ const {
     getBannerById,
     updateBanner,
     deleteBanner,
-} = require('../controllers/bannerController'); // Import banner controller functions
+} = require('../controller/bannerController'); // Import banner controller functions
 
 const router = express.Router();
 
