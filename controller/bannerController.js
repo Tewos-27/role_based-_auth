@@ -166,7 +166,6 @@ const updateBanner = async (req, res) => {
         res.status(500).json({ message: 'Server error during banner update' });
     }
 };
-
 // @desc    Delete a banner
 // @route   DELETE /api/banners/:id
 // @access  Private/Admin
@@ -179,7 +178,6 @@ const deleteBanner = async (req, res) => {
         if (!banner) {
             return res.status(404).json({ message: 'Banner not found' });
         }
-
         // Delete the associated image file from the file system
         if (banner.imageUrl && banner.imageUrl.startsWith('/uploads/banners/')) {
             const imagePath = path.join(__dirname, '..', banner.imageUrl);
@@ -187,7 +185,6 @@ const deleteBanner = async (req, res) => {
                 if (err) console.error('Error deleting banner image file:', err);
             });
         }
-
         // Delete the banner document from the database
         await banner.deleteOne();
         res.status(200).json({ message: 'Banner deleted successfully' });
@@ -196,7 +193,6 @@ const deleteBanner = async (req, res) => {
         res.status(500).json({ message: 'Server error during banner deletion' });
     }
 };
-
 // Export all controller functions and the Multer upload middleware
 module.exports = {
     upload, // Export multer upload middleware to be used in routes
