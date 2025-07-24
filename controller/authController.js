@@ -48,7 +48,6 @@ const registerUser = async (req, res) => {
         res.status(500).json({ message: 'Server error during registration' });
     }
 };
-
 // @desc    Authenticate user & get token
 // @route   POST /api/auth/login
 // @access  Public
