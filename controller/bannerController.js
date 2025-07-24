@@ -4,10 +4,8 @@ const multer = require('multer'); // Import Multer for file uploads
 const path = require('path'); // Node.js path module for handling file paths
 const fs = require('fs'); // Node.js file system module for file operations (e.g., deleting files)
 
-// Define the directory where banner images will be stored
 const uploadDir = path.join(__dirname, '../uploads/banners');
 
-// Check if the upload directory exists, if not, create it
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true }); // `recursive: true` ensures parent directories are also created
 }
