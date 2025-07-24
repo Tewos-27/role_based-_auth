@@ -14,11 +14,10 @@ if (!fs.existsSync(uploadDir)) {
 
 // Configure Multer storage
 const storage = multer.diskStorage({
-    // Define the destination directory for uploaded files
+
     destination: (req, file, cb) => {
         cb(null, uploadDir); // `cb` is the callback function (error, destination)
     },
-    // Define the filename for uploaded files
     filename: (req, file, cb) => {
         // Create a unique filename using the original fieldname, current timestamp, and original file extension
         cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
